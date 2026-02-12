@@ -20,7 +20,6 @@ export const addNote = async (req, res) => {
         return res.status(500).json({ message: error.message, status: "error", stack: error.stack });
     }
 }
-
 export const updateSingleNote = async (req, res) => {
     try {
         const token = req.headers['authorization'];
@@ -46,7 +45,6 @@ export const updateSingleNote = async (req, res) => {
         return res.status(500).json({ message: error.message, status: "error", stack: error.stack });
     }
 }
-
 export const replaceNoteDocument = async (req, res) => {
     try {
         const token = req.headers['authorization'];
@@ -216,7 +214,6 @@ export const getAllNotes = async (req, res) => {
         return res.status(500).json({ message: error.message, status: "error", stack: error.stack });
     }
 }
-
 export const aggregateNotes = async (req, res) => {
     try {
         const token = req.headers['authorization'];
@@ -269,7 +266,6 @@ export const aggregateNotes = async (req, res) => {
         return res.status(500).json({ message: error.message, status: "error", stack: error.stack });
     }
 }
-
 export const deleteAllNotes = async (req, res) => {
     try {
         const token = req.headers['authorization'];
