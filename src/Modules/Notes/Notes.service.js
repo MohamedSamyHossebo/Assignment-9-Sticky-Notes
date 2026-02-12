@@ -36,13 +36,59 @@ export const updateSingleNote = async (req, res) => {
         const { noteId } = req.params;
         const noteOwner = await NoteModel.findById(noteId);
         if (!noteOwner) return res.status(404).json({ message: "Note not found", status: "error" });
-        console.log(noteOwner.userId.toString())
-        console.log(decodedToken.id)
-        if (noteOwner.userId.toString() !== decodedToken.id) return res.status(401).json({ message: "Unauthorized: Invalid token", status: "error",});
+        if (noteOwner.userId.toString() !== decodedToken.id) return res.status(401).json({ message: "Unauthorized: Invalid token", status: "error", });
         const note = await NoteModel.findByIdAndUpdate(noteId, { title, content }, { returnDocument: 'after' });
         if (!note) return res.status(404).json({ message: "Note not found", status: "error" });
 
         return res.status(200).json({ message: "Note Updated successfully", status: "success", note });
+    } catch (error) {
+        return res.status(500).json({ message: error.message, status: "error", stack: error.stack });
+    }
+}
+
+export const replaceNoteDocument = async (req, res) => {
+    try {
+        const token = req.headers['authorization'];
+        if (!token) return res.status(401).json({ message: "Unauthorized", status: "error" })
+        const decodedToken = jwt.verify(token, jwtSecret);
+        const user = await UserModel.findById(decodedToken.id);
+        if (!user) return res.status(404).json({ message: "User Not Found ", status: "error" });
+        if (token !== user.token) return res.status(401).json({ message: "Unauthorized: Invalid token", status: "error" });
+
+        const { title, content } = req.body;
+        if (!title || !content) {
+            return res.status(400).json({ message: "All fields are required", status: "error" });
+        }
+        const { noteId } = req.params;
+        const noteOwner = await NoteModel.findById(noteId);
+        if (!noteOwner) return res.status(404).json({ message: "Note not found", status: "error" });
+        if (noteOwner.userId.toString() !== decodedToken.id) return res.status(401).json({ message: "Unauthorized: Invalid token", status: "error", });
+        const note = await NoteModel.findByIdAndUpdate(noteId, { title, content }, { returnDocument: 'after' });
+        if (!note) return res.status(404).json({ message: "Note not found", status: "error" });
+
+        return res.status(200).json({ message: "Note Updated successfully", status: "success", note });
+    } catch (error) {
+        return res.status(500).json({ message: error.message, status: "error", stack: error.stack });
+    }
+}
+export const updateAllNotesTitle = async (req, res) => {
+    try {
+        const token = req.headers['authorization'];
+        if (!token) return res.status(401).json({ message: "Unauthorized", status: "error" })
+        const decodedToken = jwt.verify(token, jwtSecret);
+        const user = await UserModel.findById(decodedToken.id);
+        if (!user) return res.status(404).json({ message: "User Not Found ", status: "error" });
+        if (token !== user.token) return res.status(401).json({ message: "Unauthorized: Invalid token", status: "error" });
+
+        const { title } = req.body;
+        if (!title) {
+            return res.status(400).json({ message: "title is required", status: "error" });
+        }
+        const note = await NoteModel.updateMany({ userId: decodedToken.id }, { title });
+        if (!note) return res.status(404).json({ message: "Note not found", status: "error" });
+        const notes = await NoteModel.find({ userId: decodedToken.id });
+
+        return res.status(200).json({ message: "Note Updated successfully", status: "success", notes });
     } catch (error) {
         return res.status(500).json({ message: error.message, status: "error", stack: error.stack });
     }
