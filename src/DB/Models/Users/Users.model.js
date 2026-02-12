@@ -18,6 +18,11 @@ const userSchema = new Schema({
         required: true,
         min: 18,
         max: 60
+    },
+    phone: {
+        type: String,
+        required: true,
+        unique: true
     }
 },{
     timestamps: true
