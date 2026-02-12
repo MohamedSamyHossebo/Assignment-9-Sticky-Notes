@@ -1,8 +1,8 @@
 import { Router } from "express";
-const notesRouter = Router();
+import * as notesService from "./Notes.service.js";
+const router = Router();
 
-notesRouter.post("/", (req, res) => {
-    res.status(200).json({ message: "Notes" });
-})
+router.post("/", notesService.addNote);
+router.patch("/:id", notesService.updateSingleNote);
 
-export default notesRouter;
+export default router;
