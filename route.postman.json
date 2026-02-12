@@ -1,0 +1,751 @@
+{
+    "info": {
+        "name": "route",
+        "description": "This collection contains API endpoints for the Route Notes Application, covering Authentication, User Management, and Note operations.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Auth",
+            "description": "",
+            "item": [
+                {
+                    "name": "Register",
+                    "description": "Register a new user.",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"name\": \"Maggie Okuneva\",\r\n    \"email\": \"Jarrett_Steuber@gmail.com\",\r\n    \"password\": \"123456\",\r\n    \"age\": 60,\r\n    \"phone\": \"(542) 538-1738\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/signup",
+                            "path": [
+                                "api",
+                                "auth",
+                                "signup"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "login",
+                    "description": "Authenticate a user and retrieve a JWT token.",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n\r\n    \"email\": \"Jarrett_Steuber@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/auth/login",
+                            "path": [
+                                "api",
+                                "auth",
+                                "login"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        },
+        {
+            "name": "User",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get logged-in user",
+                    "description": "Retrieve details of the currently authenticated user.",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "GET",
+                        "body": {},
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OGRkNWY3NmZjYzZlZjRiZTE5YjcyNCIsIm5hbWUiOiJtb2hhbWVkIE9rdW5ldmEiLCJlbWFpbCI6IkphcnJldHRfU3RldWJlckBnbWFpbC5jb20iLCJhZ2UiOjYwLCJpYXQiOjE3NzA5MDMxODIsImV4cCI6MTc3MDk4OTU4Mn0.nb8MwNTp_Qat_PUg0YGdRogy86GX7Auhlg6UM_Sa1qY",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/users",
+                            "path": [
+                                "api",
+                                "users"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Update logged-in user",
+                    "description": "Update details of the currently authenticated user.",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "PATCH",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"name\": \"mohamed sOkuneva\",\r\n    \"email\": \"Jarrett_Steuber@gmail.com\",\r\n    \"age\": 60,\r\n    \"phone\": \"(542) 538-1738\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OGRkNWY3NmZjYzZlZjRiZTE5YjcyNCIsIm5hbWUiOiJtb2hhbWVkIE9rdW5ldmEiLCJlbWFpbCI6IkphcnJldHRfU3RldWJlckBnbWFpbC5jb20iLCJhZ2UiOjYwLCJpYXQiOjE3NzA5MDMxODIsImV4cCI6MTc3MDk4OTU4Mn0.nb8MwNTp_Qat_PUg0YGdRogy86GX7Auhlg6UM_Sa1qY",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/users",
+                            "path": [
+                                "api",
+                                "users"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Delete logged-in user",
+                    "description": "Delete the account of the currently authenticated user.",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "DELETE",
+                        "body": {},
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OGRkMTZiN2YzYjJlOTNlMmM2MjEzMSIsIm5hbWUiOiJNYWdnaWUgT2t1bmV2YSIsImVtYWlsIjoiSmFycmV0dF9TdGV1YmVyQGdtYWlsLmNvbSIsImFnZSI6NjAsImlhdCI6MTc3MDkwMTg5MSwiZXhwIjoxNzcwOTg4MjkxfQ.OHbBOh8zplZC4mxxczNTjNO5Yda33ncDgD20fiLjoII",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/users",
+                            "path": [
+                                "api",
+                                "users"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        },
+        {
+            "name": "Notes",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get UserNotes",
+                    "description": "Retrieve notes along with user details using population.",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "GET",
+                        "body": {},
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{userToken}}",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/notes/note-with-user",
+                            "path": [
+                                "api",
+                                "notes",
+                                "note-with-user"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Aggregate get all notes for the logged-in",
+                    "description": "Retrieve aggregated notes with user details using MongoDB aggregation pipeline.",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "GET",
+                        "body": {},
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{userToken}}",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "api/notes/aggregate",
+                            "path": [
+                                "api",
+                                "notes",
+                                "aggregate"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "title",
+                                    "value": "Code Review Notes",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Get All Notes Paginated",
+                    "description": "Retrieve notes with pagination and sorting options.",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "GET",
+                        "body": {},
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OGRkNWY3NmZjYzZlZjRiZTE5YjcyNCIsIm5hbWUiOiJtb2hhbWVkIE9rdW5ldmEiLCJlbWFpbCI6IkphcnJldHRfU3RldWJlckBnbWFpbC5jb20iLCJhZ2UiOjYwLCJpYXQiOjE3NzA5MDMxODIsImV4cCI6MTc3MDk4OTU4Mn0.nb8MwNTp_Qat_PUg0YGdRogy86GX7Auhlg6UM_Sa1qY",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/notes/paginate-sort",
+                            "path": [
+                                "api",
+                                "notes",
+                                "paginate-sort"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": [
+                                        "1"
+                                    ],
+                                    "description": "",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "limit",
+                                    "value": "10",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Get Note By Id",
+                    "description": "Retrieve a specific note by its ID.",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "GET",
+                        "body": {},
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{userToken}}",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/notes/:noteId",
+                            "path": [
+                                "api",
+                                "notes",
+                                ":noteId"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": [
+                                {
+                                    "key": "noteId",
+                                    "value": "698de895df8a35d0b43dfc06",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Get Note By Content",
+                    "description": "Search for notes containing specific content.",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "GET",
+                        "body": {},
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{userToken}}",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/notes/note-by-content",
+                            "path": [
+                                "api",
+                                "notes",
+                                "note-by-content"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [
+                                {
+                                    "key": "content",
+                                    "value": "test",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Create Note",
+                    "description": "Create a new note.",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "POST",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"Sample Title\",\n    \"content\": \"Sample Content\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OGRkNWY3NmZjYzZlZjRiZTE5YjcyNCIsIm5hbWUiOiJtb2hhbWVkIE9rdW5ldmEiLCJlbWFpbCI6IkphcnJldHRfU3RldWJlckBnbWFpbC5jb20iLCJhZ2UiOjYwLCJpYXQiOjE3NzA5MDMxODIsImV4cCI6MTc3MDk4OTU4Mn0.nb8MwNTp_Qat_PUg0YGdRogy86GX7Auhlg6UM_Sa1qY",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/notes",
+                            "path": [
+                                "api",
+                                "notes"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Update single Note",
+                    "description": "Update a specific note by its ID.",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "PATCH",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"Updated Title\",\n    \"content\": \"Updated Content\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/notes/:noteId",
+                            "path": [
+                                "api",
+                                "notes",
+                                ":noteId"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": [
+                                {
+                                    "key": "noteId",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Update All Notes Title",
+                    "description": "Update the title of all notes belonging to the authenticated user.",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "PATCH",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"New Title For All\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/notes/all",
+                            "path": [
+                                "api",
+                                "notes",
+                                "all"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "ReplaceNote",
+                    "description": "Replace the content of a specific note.",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "PUT",
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"title\": \"Replaced Title\",\n    \"content\": \"Replaced Content\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/notes/replace/:noteId",
+                            "path": [
+                                "api",
+                                "notes",
+                                "replace",
+                                ":noteId"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": [
+                                {
+                                    "key": "noteId",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Delete Note By Id",
+                    "description": "Delete a specific note by its ID.",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "DELETE",
+                        "body": {},
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OGRkNWY3NmZjYzZlZjRiZTE5YjcyNCIsIm5hbWUiOiJtb2hhbWVkIE9rdW5ldmEiLCJlbWFpbCI6IkphcnJldHRfU3RldWJlckBnbWFpbC5jb20iLCJhZ2UiOjYwLCJpYXQiOjE3NzA5MDMxODIsImV4cCI6MTc3MDk4OTU4Mn0.nb8MwNTp_Qat_PUg0YGdRogy86GX7Auhlg6UM_Sa1qY",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/notes/:noteId",
+                            "path": [
+                                "api",
+                                "notes",
+                                ":noteId"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": [
+                                {
+                                    "key": "noteId",
+                                    "value": "698de88cdf8a35d0b43dfbfd",
+                                    "description": "",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                },
+                {
+                    "name": "Delete All Notes for Author",
+                    "description": "Delete all notes associated with the authenticated user.",
+                    "event": [],
+                    "auth": {},
+                    "request": {
+                        "auth": {},
+                        "method": "DELETE",
+                        "body": {},
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "{{userToken}}",
+                                "description": "",
+                                "type": "string"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/notes",
+                            "path": [
+                                "api",
+                                "notes"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        }
+                    },
+                    "response": [],
+                    "protocolProfileBehavior": {
+                        "strictSSL": false,
+                        "followRedirects": true
+                    }
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        }
+    ],
+    "variable": [],
+    "event": [],
+    "auth": {}
+}
