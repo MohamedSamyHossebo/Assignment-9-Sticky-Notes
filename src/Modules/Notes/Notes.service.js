@@ -195,3 +195,23 @@ export const getNoteByContent = async (req, res) => {
         return res.status(500).json({ message: error.message, status: "error", stack: error.stack });
     }
 }
+export const getAllNotes = async (req, res) => {
+    try {
+        const token = req.headers['authorization'];
+        if (!token) return res.status(401).json({ message: "Unauthorized", status: "error" })
+        const decodedToken = jwt.verify(token, jwtSecret);
+        const user = await UserModel.findById(decodedToken.id);
+        if (!user) return res.status(404).json({ message: "User Not Found ", status: "error" });
+        if (token !== user.token) return res.status(401).json({ message: "Unauthorized: Invalid token", status: "error" });
+
+        const notes = await NoteModel.find({ userId: decodedToken.id })
+            .select("title userId createdAt")
+            .populate("userId", "email");
+
+        if (!notes) return res.status(404).json({ message: "Notes not found", status: "error" });
+
+        return res.status(200).json({ message: "Notes fetched successfully", status: "success", notes });
+    } catch (error) {
+        return res.status(500).json({ message: error.message, status: "error", stack: error.stack });
+    }
+}

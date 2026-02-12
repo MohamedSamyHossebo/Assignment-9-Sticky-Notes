@@ -2,6 +2,7 @@ import { Router } from "express";
 import * as notesService from "./Notes.service.js";
 const router = Router();
 
+router.get("/note-with-user", notesService.getAllNotes);
 router.get("/paginate-sort", notesService.paginateSortNotes);
 router.get("/note-by-content", notesService.getNoteByContent);
 router.post("/", notesService.addNote);
