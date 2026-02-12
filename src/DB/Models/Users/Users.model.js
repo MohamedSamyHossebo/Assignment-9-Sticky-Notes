@@ -1,4 +1,4 @@
-import { Schema,mongoose } from 'mongoose';
+import { Schema, mongoose } from 'mongoose';
 const userSchema = new Schema({
     name: {
         type: String,
@@ -23,10 +23,13 @@ const userSchema = new Schema({
         type: String,
         required: true,
         unique: true
+    },
+    token: {
+        type: String,
     }
-},{
+}, {
     timestamps: true
 });
 
-const UserModel=mongoose.model("User",userSchema);
+const UserModel = mongoose.model("User", userSchema);
 export default UserModel;

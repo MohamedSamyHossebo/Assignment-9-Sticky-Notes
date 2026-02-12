@@ -8,7 +8,7 @@ const bootstrap = async (app, express) => {
     await connectDB();
     app.use("/api/auth", authRouter);
     app.use("/api/notes", notesRouter);
-    app.use("/api/user", userRouter);
+    app.use("/api/users", userRouter);
 
 
     app.get("/", (req, res) => {

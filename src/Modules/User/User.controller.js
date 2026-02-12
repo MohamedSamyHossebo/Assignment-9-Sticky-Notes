@@ -1,8 +1,8 @@
 import { Router } from "express";
-const userRouter = Router();
+import * as userService from "./User.service.js";
+const router = Router();
 
-userRouter.post("/", (req, res) => {
-    res.status(200).json({ message: "User" });
-})
 
-export default userRouter;
+router.patch("/", userService.updateLoggedInUser)
+
+export default router;
