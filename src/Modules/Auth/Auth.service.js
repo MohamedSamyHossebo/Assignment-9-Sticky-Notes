@@ -11,9 +11,12 @@ export const createUser = async (req, res) => {
         }
         const hashedPassword = await bcrypt.hash(password, 10);
         const encryptedPhone = crypto.createHash("sha256").update(phone).digest("hex");
+        const userEmail = await UserModel.findOne({ email });
+        if (userEmail) {
+            return res.status(409).json({ message: "Email already exists", status: "error" });
+        }
         const user = await UserModel.create({ name, email, password: hashedPassword, age, phone:encryptedPhone });
-        const token = jwt.sign(jwtUserObject(user), jwtSecret, { expiresIn: "1d" });
-        return res.status(201).json({ message: "User created successfully", status: "success", user:{id:user._id,name:user.name,email:user.email,age:user.age}, token });
+        return res.status(201).json({ message: "User created successfully", status: "success" });
     } catch (error) {
         return res.status(500).json({ message: error.message, status: "error", stack: error.stack });
     }
@@ -35,7 +38,7 @@ export const loginUser = async (req, res) => {
             return res.status(401).json({ message: "Invalid password", status: "error" });
         }
         const token = jwt.sign(jwtUserObject(user), jwtSecret, { expiresIn: "1d" });
-        return res.status(200).json({ message: "User logged in successfully", status: "success", user:{id:user._id,name:user.name,email:user.email}, token });
+        return res.status(200).json({ message: "User logged in successfully", status: "success", token });
     } catch (error) {
         return res.status(500).json({ message: error.message, status: "error", stack: error.stack });
     }
