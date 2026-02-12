@@ -1,9 +1,11 @@
 import { authRouter } from "./Modules/index.js";
 import { notesRouter } from "./Modules/index.js";
 import { userRouter } from "./Modules/index.js";
+import connectDB from "./DB/connection.js";
 
-const bootstrap = (app, express) => {
+const bootstrap = async (app, express) => {
     app.use(express.json());
+    await connectDB();
     app.use("/api/auth", authRouter);
     app.use("/api/notes", notesRouter);
     app.use("/api/user", userRouter);
