@@ -4,5 +4,6 @@ const router = Router();
 
 
 router.patch("/", userService.updateLoggedInUser)
+router.delete("/", userService.deleteLoggedInUser)
 
 export default router;
