@@ -53,3 +53,16 @@ export const deleteLoggedInUser = async (req, res) => {
         return res.status(500).json({ message: error.message, status: "error", stack: error.stack });
     }
 }
+export const getLoggedInUser = async (req, res) => {
+    try {
+        const token = req.headers['authorization'];
+        if (!token) return res.status(401).json({ message: "Unauthorized", status: "error" })
+        const decodedToken = jwt.verify(token, jwtSecret);
+        const user = await UserModel.findById(decodedToken.id);
+        if (!user) return res.status(404).json({ message: "User Not Found ", status: "error" });
+        if (token !== user.token) return res.status(401).json({ message: "Unauthorized: Invalid token", status: "error" });
+        return res.status(200).json({ message: "User fetched successfully", status: "success", user });
+    } catch (error) {
+        return res.status(500).json({ message: error.message, status: "error", stack: error.stack });
+    }
+}
