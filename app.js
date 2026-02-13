@@ -8,3 +8,5 @@ const port = process.env.PORT;
 bootstrap(app, express);
 
 app.listen(port, () => console.log(`listening on http://localhost:${port}`));
+
+export default app;
