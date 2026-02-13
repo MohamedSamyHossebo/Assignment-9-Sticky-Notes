@@ -183,11 +183,13 @@ export const getNoteByContent = async (req, res) => {
         if (token !== user.token) return res.status(401).json({ message: "Unauthorized: Invalid token", status: "error" });
 
         const { content } = req.query;
+        if (!content) return res.status(400).json({ message: "content query parameter is required", status: "error" });
 
-        const notes = await NoteModel.find({
-            content: { $regex: content, $options: "i" },
+        const notes = await NoteModel.findOne({
+            content: { $regex: content },
             userId: decodedToken.id
         });
+        if (notes.length === 0) return res.status(404).json({ message: "You don't have any note with this content", status: "error" });
 
         return res.status(200).json({ message: "Notes fetched successfully", status: "success", notes });
     } catch (error) {
