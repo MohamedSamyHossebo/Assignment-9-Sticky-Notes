@@ -1,7 +1,7 @@
 {
     "info": {
         "name": "route",
-        "description": "This collection contains API endpoints for the Route Notes Application, covering Authentication, User Management, and Note operations.",
+        "description": "",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
     "item": [
@@ -10,8 +10,8 @@
             "description": "",
             "item": [
                 {
-                    "name": "Register",
-                    "description": "Register a new user.",
+                    "name": "SignUp",
+                    "description": "",
                     "event": [],
                     "auth": {},
                     "request": {
@@ -49,7 +49,7 @@
                 },
                 {
                     "name": "login",
-                    "description": "Authenticate a user and retrieve a JWT token.",
+                    "description": "",
                     "event": [],
                     "auth": {},
                     "request": {
@@ -112,7 +112,7 @@
             "item": [
                 {
                     "name": "Get logged-in user",
-                    "description": "Retrieve details of the currently authenticated user.",
+                    "description": "",
                     "event": [],
                     "auth": {},
                     "request": {
@@ -122,7 +122,7 @@
                         "header": [
                             {
                                 "key": "Authorization",
-                                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5OGRkNWY3NmZjYzZlZjRiZTE5YjcyNCIsIm5hbWUiOiJtb2hhbWVkIE9rdW5ldmEiLCJlbWFpbCI6IkphcnJldHRfU3RldWJlckBnbWFpbC5jb20iLCJhZ2UiOjYwLCJpYXQiOjE3NzA5MDMxODIsImV4cCI6MTc3MDk4OTU4Mn0.nb8MwNTp_Qat_PUg0YGdRogy86GX7Auhlg6UM_Sa1qY",
+                                "value": "{{userToken}}",
                                 "description": "",
                                 "type": "string"
                             }
@@ -148,7 +148,7 @@
                 },
                 {
                     "name": "Update logged-in user",
-                    "description": "Update details of the currently authenticated user.",
+                    "description": "",
                     "event": [],
                     "auth": {},
                     "request": {
@@ -192,7 +192,7 @@
                 },
                 {
                     "name": "Delete logged-in user",
-                    "description": "Delete the account of the currently authenticated user.",
+                    "description": "Delete Loggedin user by it's own token from the headers",
                     "event": [],
                     "auth": {},
                     "request": {
@@ -253,7 +253,7 @@
             "item": [
                 {
                     "name": "Get UserNotes",
-                    "description": "Retrieve notes along with user details using population.",
+                    "description": "Get user note by it's token from headers",
                     "event": [],
                     "auth": {},
                     "request": {
@@ -290,7 +290,7 @@
                 },
                 {
                     "name": "Aggregate get all notes for the logged-in",
-                    "description": "Retrieve aggregated notes with user details using MongoDB aggregation pipeline.",
+                    "description": "",
                     "event": [],
                     "auth": {},
                     "request": {
@@ -334,7 +334,7 @@
                 },
                 {
                     "name": "Get All Notes Paginated",
-                    "description": "Retrieve notes with pagination and sorting options.",
+                    "description": "",
                     "event": [],
                     "auth": {},
                     "request": {
@@ -386,7 +386,7 @@
                 },
                 {
                     "name": "Get Note By Id",
-                    "description": "Retrieve a specific note by its ID.",
+                    "description": "",
                     "event": [],
                     "auth": {},
                     "request": {
@@ -430,7 +430,7 @@
                 },
                 {
                     "name": "Get Note By Content",
-                    "description": "Search for notes containing specific content.",
+                    "description": "search notes for the author by ```content```",
                     "event": [],
                     "auth": {},
                     "request": {
@@ -474,7 +474,7 @@
                 },
                 {
                     "name": "Create Note",
-                    "description": "Create a new note.",
+                    "description": "",
                     "event": [],
                     "auth": {},
                     "request": {
@@ -482,7 +482,6 @@
                         "method": "POST",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"title\": \"Sample Title\",\n    \"content\": \"Sample Content\"\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -518,7 +517,7 @@
                 },
                 {
                     "name": "Update single Note",
-                    "description": "Update a specific note by its ID.",
+                    "description": "",
                     "event": [],
                     "auth": {},
                     "request": {
@@ -526,7 +525,6 @@
                         "method": "PATCH",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"title\": \"Updated Title\",\n    \"content\": \"Updated Content\"\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -535,11 +533,11 @@
                         },
                         "header": [],
                         "url": {
-                            "raw": "{{baseUrl}}/api/notes/:noteId",
+                            "raw": "{{baseUrl}}/api/notes/:id",
                             "path": [
                                 "api",
                                 "notes",
-                                ":noteId"
+                                ":id"
                             ],
                             "host": [
                                 "{{baseUrl}}"
@@ -547,7 +545,7 @@
                             "query": [],
                             "variable": [
                                 {
-                                    "key": "noteId",
+                                    "key": "id",
                                     "description": "",
                                     "type": "string"
                                 }
@@ -562,7 +560,7 @@
                 },
                 {
                     "name": "Update All Notes Title",
-                    "description": "Update the title of all notes belonging to the authenticated user.",
+                    "description": "",
                     "event": [],
                     "auth": {},
                     "request": {
@@ -570,7 +568,6 @@
                         "method": "PATCH",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"title\": \"New Title For All\"\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -600,7 +597,7 @@
                 },
                 {
                     "name": "ReplaceNote",
-                    "description": "Replace the content of a specific note.",
+                    "description": "Replace Single note by its id with a new data",
                     "event": [],
                     "auth": {},
                     "request": {
@@ -608,7 +605,6 @@
                         "method": "PUT",
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"title\": \"Replaced Title\",\n    \"content\": \"Replaced Content\"\n}",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -645,7 +641,7 @@
                 },
                 {
                     "name": "Delete Note By Id",
-                    "description": "Delete a specific note by its ID.",
+                    "description": "",
                     "event": [],
                     "auth": {},
                     "request": {
@@ -689,7 +685,7 @@
                 },
                 {
                     "name": "Delete All Notes for Author",
-                    "description": "Delete all notes associated with the authenticated user.",
+                    "description": "Delete All Notes of the Author by it's token",
                     "event": [],
                     "auth": {},
                     "request": {
