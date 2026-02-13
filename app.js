@@ -5,7 +5,7 @@ dotenv.config({ path: './Config/.env.secrets' });
 const app = express();
 const port = process.env.PORT;
 
-bootstrap(app, express);
+await bootstrap(app, express);
 
 app.listen(port, () => console.log(`listening on http://localhost:${port}`));
 
